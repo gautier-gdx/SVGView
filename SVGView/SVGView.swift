@@ -12,10 +12,14 @@ public class SVGView: UIView {
     
     // MARK: - data
     
-    //constants
+    //general appearance
+    public var lineWidth: CGFloat = 1
+    
+    //animation duration
     public var strokeSpeed: TimeInterval = 1
     public var borderWidthSpeed: TimeInterval = 1.5
     public var fillSpeed: TimeInterval = 0.5
+
 
     //properties
     public var svgPath: String?
@@ -38,6 +42,8 @@ public class SVGView: UIView {
         animate()
     }
     
+    
+    
     public func animate() {
         guard svgPath != nil else { return }
         
@@ -54,8 +60,7 @@ public class SVGView: UIView {
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: bounds.width/2, y: bounds.height/2)
         layer.addSublayer(shapeLayer)
-        shapeLayer.strokeColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 1
+        shapeLayer.lineWidth = lineWidth
         
         animatePaths(shapeLayer)
     }
@@ -84,7 +89,7 @@ public class SVGView: UIView {
             let fillAnimation = CABasicAnimation(keyPath: "fillColor")
             fillAnimation.fromValue = UIColor.clear
             fillAnimation.toValue = fillColor
-            fillAnimation.beginTime = CACurrentMediaTime() + 0.5
+            fillAnimation.beginTime = CACurrentMediaTime() + fillSpeed
             fillAnimation.fillMode = kCAFillModeBoth
             fillAnimation.duration = fillSpeed // duration is 1 sec
             fillAnimation.isRemovedOnCompletion = false

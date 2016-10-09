@@ -7,15 +7,15 @@
 //
 
 import UIKit
+//import SVGView
 
 class ViewController: UIViewController {
-    
-    private let 
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        let svgView =
     }
 
     override func didReceiveMemoryWarning() {
